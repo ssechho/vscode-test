@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        input, button {
+            margin: 10px;
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #333;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Multiplication Table</h1>
+        <label for="number">Enter a number:</label>
+        <input type="number" id="number" placeholder="Enter a number">
+        <button onclick="generateTable()">Generate Table</button>
+
+        <div id="table-container"></div>
+    </div>
+
+    <script>
+        function generateTable() {
+            var numberInput = document.getElementById('number');
+            var tableContainer = document.getElementById('table-container');
+
+            // Clear previous table
+            tableContainer.innerHTML = '';
+
+            var number = parseInt(numberInput.value);
+
+            if (!isNaN(number)) {
+                var table = document.createElement('table');
+                var headerRow = table.createTHead().insertRow(0);
+
+                for (var i = 1; i <= 9; i++) {
+                    var cell = headerRow.insertCell(i - 1);
+                    cell.textContent = i + " x " + number;
+                }
+
+                for (var i = 1; i <= 9; i++) {
+                    var row = table.insertRow(i);
+                    var cell = row.insertCell(0);
+                    cell.textContent = i;
+
+                    for (var j = 1; j <= 9; j++) {
+                        var cell = row.insertCell(j);
+                        cell.textContent = i * number;
+
+                        // Print to console
+                        console.log(`${i} x ${number} = ${result}`);
+                    }
+                }
+
+                tableContainer.appendChild(table);
+            } else {
+                alert('Please enter a valid number.');
+            }
+        }
+    </script>
+</body>
+</html>
